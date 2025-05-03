@@ -8,5 +8,5 @@ namespace CharacterFunctions
 	Character Heal(const Character& character, int healAmount);
 	Character AddItem(const Character& character, const std::string& item);
 	void DisplayInventory(const Character& character);
-	void PrintStats(const Character& character);
+	void PrintStats(const Character& character); 
 }

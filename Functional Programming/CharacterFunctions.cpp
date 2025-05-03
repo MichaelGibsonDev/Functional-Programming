@@ -3,9 +3,8 @@
 
 namespace CharacterFunctions
 {
-	Character CreateCharacter(const std::string& name, int health, int attackPower)
-	{
-		return Character{ name, health, attackPower, {} };
+	Character CreateCharacter(const std::string& name, int health, int attackPower) {
+		return Character(name, health, attackPower, {});
 	}
 
 	std::pair<Character, int> Attack(const Character& attacker, const Character& target)
@@ -20,20 +19,27 @@ namespace CharacterFunctions
 
 	Character Heal(const Character& character, int healAmount)
 	{
-		int newHealth = character.health + healAmount;
-		return Character{ character.name, newHealth, character.attackPower, character.inventory };
+		return Character{ character.name, character.health + healAmount, character.attackPower, character.inventory }; 
 	}
 
 	Character AddItem(const Character& character, const std::string& item)
 	{
-		Character updated = character;
-		updated.inventory.push_back(item);
-		return updated;
+		std::vector<std::string> updatedInventory = character.inventory;
+		updatedInventory.push_back(item);
+		return Character{ character.name, character.health, character.attackPower, updatedInventory };
 	}
 
 	void DisplayInventory(const Character& character)
 	{
-		std::cout << "Name: " << character.name << "\n";
-		std::cout << "Health: " << character.health << "\n";
+		std::cout << character.name << "'s Inventory:\n";
+		for (const std::string& item : character.inventory)
+		{
+			std::cout << "- " << item << "\n";
+		}
+	}
+
+	void PrintStats(const Character& character)
+	{
+		std::cout << character.name << " | Health: " << character.health << " | Attack: " << character.attackPower << "\n";
 	}
 }

@@ -18,4 +18,4 @@ namespace Helper
 	{
 		return (rand() % 2) == 0;
 	}
-}
+} 
